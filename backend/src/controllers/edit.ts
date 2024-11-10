@@ -25,5 +25,4 @@ export const edit = async (req: Request, res: Response, next: NextFunction): Pro
     user: userWithoutPassword,
     token: accessToken
   });
-  next();
 };

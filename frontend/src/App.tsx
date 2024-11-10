@@ -11,7 +11,6 @@ import '@fontsource/roboto/700.css';
 export const App = () => {
   useAuthQuery();
   const auth = useAuth();
-  console.log(auth);
 
   return <RouterProvider router={router} />;
 };

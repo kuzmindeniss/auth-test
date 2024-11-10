@@ -11,13 +11,9 @@ export const auth = async (req: Request, res: Response, next: NextFunction): Pro
 
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
-      console.log(err);
       res.sendStatus(403);
       return;
     }
     res.send({ user });
-    next();
   });
-
-  next();
 };

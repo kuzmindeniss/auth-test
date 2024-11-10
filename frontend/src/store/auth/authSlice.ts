@@ -60,7 +60,6 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.auth.matchFulfilled,
       (state, { payload }) => {
-        console.log(payload);
         state.user = payload.user;
         state.loading = false;
         state.isAuthenticated = true;
@@ -69,7 +68,6 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.auth.matchRejected,
       (state, { payload }) => {
-        console.log(payload);
         state.user = null;
         state.loading = false;
         state.isAuthenticated = false;
@@ -78,7 +76,6 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.auth.matchPending,
       (state, { payload }) => {
-        console.log(payload);
         state.user = null;
         state.loading = true;
         state.isAuthenticated = false;
