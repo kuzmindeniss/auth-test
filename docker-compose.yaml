@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_container
+    volumes:
+      - ./docker-volumes/postgres:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=test_auth
+      - POSTGRES_ROOT_PASSWORD=test_auth
+      - POSTGRES_PASSWORD=test_auth
+      - POSTGRES_DB=users
+    ports:
+      - 5432:5432
+
+  backend:
+    container_name: backend_container
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    command: "npm run start"
+    ports:
+      - 4041:4041
+    depends_on:
+      - postgres
+    links:
+      - postgres
+        
+  frontend:
+    container_name: frontend_container
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    command: "npm run start"
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
+    
+
